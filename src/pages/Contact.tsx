@@ -75,6 +75,10 @@ const Contact = () => {
     }, 1500);
   };
 
+  const handleMapClick = () => {
+    window.open('https://maps.app.goo.gl/g7ygYNG6CJTsYu4JA', '_blank');
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -157,7 +161,7 @@ const Contact = () => {
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         className="w-full px-4 py-3 rounded-md border border-movitax-darkGray/20 focus:border-movitax-blue focus:outline-none focus:ring-1 focus:ring-movitax-blue transition-all"
-                        placeholder="(123) 456-7890"
+                        placeholder="+254-XXX-XXXXXX"
                       />
                     </div>
                     
@@ -172,11 +176,12 @@ const Contact = () => {
                         className="w-full px-4 py-3 rounded-md border border-movitax-darkGray/20 focus:border-movitax-blue focus:outline-none focus:ring-1 focus:ring-movitax-blue transition-all"
                       >
                         <option value="">Select a service</option>
-                        <option value="tax-planning">Tax Planning</option>
                         <option value="audit">Audit & Assurance</option>
-                        <option value="advisory">Financial Advisory</option>
-                        <option value="consulting">Business Consulting</option>
-                        <option value="other">Other</option>
+                        <option value="tax">Tax Management</option>
+                        <option value="business">Business Advisory</option>
+                        <option value="financial">Financial Advisory</option>
+                        <option value="secretarial">Corporate Secretarial</option>
+                        <option value="other">Other Services</option>
                       </select>
                     </div>
                   </div>
@@ -234,8 +239,9 @@ const Contact = () => {
                         Our Office
                       </h3>
                       <p className="text-movitax-darkGray/70">
-                        123 Finance Street, Suite 456<br />
-                        New York, NY 10001
+                        Bishop Magua Plaza, 3rd Floor Suite 306<br />
+                        Biashara Street, Kiambu Town<br />
+                        P.O. Box 26224 – 00504 Nairobi
                       </p>
                     </div>
                   </div>
@@ -249,8 +255,8 @@ const Contact = () => {
                         Phone
                       </h3>
                       <p className="text-movitax-darkGray/70">
-                        <a href="tel:+12125551234" className="hover:text-movitax-blue transition-colors">
-                          (212) 555-1234
+                        <a href="tel:+254723617013" className="hover:text-movitax-blue transition-colors">
+                          +254-723-617013
                         </a>
                       </p>
                     </div>
@@ -265,8 +271,8 @@ const Contact = () => {
                         Email
                       </h3>
                       <p className="text-movitax-darkGray/70">
-                        <a href="mailto:info@movitax.com" className="hover:text-movitax-blue transition-colors">
-                          info@movitax.com
+                        <a href="mailto:movitaxconsultants@gmail.com" className="hover:text-movitax-blue transition-colors">
+                          movitaxconsultants@gmail.com
                         </a>
                       </p>
                     </div>
@@ -303,15 +309,22 @@ const Contact = () => {
               Our Location
             </h2>
             
-            <div className="w-full h-96 rounded-xl overflow-hidden shadow-lg">
-              {/* Placeholder for map - in a real implementation, you would integrate Google Maps or another map provider */}
+            <div 
+              onClick={handleMapClick}
+              className="w-full h-96 rounded-xl overflow-hidden shadow-lg cursor-pointer relative group"
+            >
               <div 
-                className="w-full h-full bg-cover bg-center" 
+                className="w-full h-full bg-cover bg-center transition-all duration-300 group-hover:scale-105" 
                 style={{ 
                   backgroundImage: 'url("https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80")',
                   filter: 'grayscale(0.3)'
                 }}
               ></div>
+              <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="bg-white/90 px-4 py-2 rounded-md text-movitax-darkGray font-medium">
+                  Open in Google Maps
+                </div>
+              </div>
             </div>
           </div>
         </section>

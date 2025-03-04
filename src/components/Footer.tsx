@@ -49,10 +49,11 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-semibold mb-6">Our Services</h3>
             <ul className="space-y-3">
-              <li><NavLink to="/services#tax" className="text-gray-300 hover:text-white transition-colors">Tax Planning</NavLink></li>
               <li><NavLink to="/services#audit" className="text-gray-300 hover:text-white transition-colors">Audit & Assurance</NavLink></li>
-              <li><NavLink to="/services#advisory" className="text-gray-300 hover:text-white transition-colors">Advisory Services</NavLink></li>
-              <li><NavLink to="/services#consulting" className="text-gray-300 hover:text-white transition-colors">Business Consulting</NavLink></li>
+              <li><NavLink to="/services#tax" className="text-gray-300 hover:text-white transition-colors">Tax Management</NavLink></li>
+              <li><NavLink to="/services#business" className="text-gray-300 hover:text-white transition-colors">Business Advisory</NavLink></li>
+              <li><NavLink to="/services#financial" className="text-gray-300 hover:text-white transition-colors">Financial Advisory</NavLink></li>
+              <li><NavLink to="/services#secretarial" className="text-gray-300 hover:text-white transition-colors">Corporate Secretarial</NavLink></li>
             </ul>
           </div>
 
@@ -62,15 +63,19 @@ const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-start">
                 <MapPin className="mr-3 h-5 w-5 text-movitax-blue flex-shrink-0 mt-0.5" />
-                <span className="text-gray-300">123 Finance Street, Suite 456<br />New York, NY 10001</span>
+                <span className="text-gray-300">
+                  Bishop Magua Plaza, 3rd Floor Suite 306<br />
+                  Biashara Street, Kiambu Town<br />
+                  P.O. Box 26224 – 00504 Nairobi
+                </span>
               </li>
               <li className="flex items-center">
                 <Phone className="mr-3 h-5 w-5 text-movitax-blue flex-shrink-0" />
-                <a href="tel:+12125551234" className="text-gray-300 hover:text-white transition-colors">(212) 555-1234</a>
+                <a href="tel:+254723617013" className="text-gray-300 hover:text-white transition-colors">+254-723-617013</a>
               </li>
               <li className="flex items-center">
                 <Mail className="mr-3 h-5 w-5 text-movitax-blue flex-shrink-0" />
-                <a href="mailto:info@movitax.com" className="text-gray-300 hover:text-white transition-colors">info@movitax.com</a>
+                <a href="mailto:movitaxconsultants@gmail.com" className="text-gray-300 hover:text-white transition-colors">movitaxconsultants@gmail.com</a>
               </li>
             </ul>
           </div>
