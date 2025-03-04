@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,7 +62,13 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+                movitax: {
+                    blue: '#00AFEF',
+                    gold: '#FFC72C',
+                    lightGray: '#F8F9FA',
+                    darkGray: '#343A40'
+                }
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -84,12 +91,92 @@ export default {
 					to: {
 						height: '0'
 					}
-				}
+				},
+                'fade-in': {
+                    '0%': {
+                        opacity: '0',
+                        transform: 'translateY(20px)'
+                    },
+                    '100%': {
+                        opacity: '1',
+                        transform: 'translateY(0)'
+                    }
+                },
+                'fade-in-right': {
+                    '0%': {
+                        opacity: '0',
+                        transform: 'translateX(-20px)'
+                    },
+                    '100%': {
+                        opacity: '1',
+                        transform: 'translateX(0)'
+                    }
+                },
+                'fade-in-left': {
+                    '0%': {
+                        opacity: '0',
+                        transform: 'translateX(20px)'
+                    },
+                    '100%': {
+                        opacity: '1',
+                        transform: 'translateX(0)'
+                    }
+                },
+                'scale-in': {
+                    '0%': {
+                        opacity: '0',
+                        transform: 'scale(0.95)'
+                    },
+                    '100%': {
+                        opacity: '1',
+                        transform: 'scale(1)'
+                    }
+                },
+                'float': {
+                    '0%, 100%': {
+                        transform: 'translateY(0)'
+                    },
+                    '50%': {
+                        transform: 'translateY(-10px)'
+                    }
+                },
+                'pulse-subtle': {
+                    '0%, 100%': {
+                        opacity: '1'
+                    },
+                    '50%': {
+                        opacity: '0.85'
+                    }
+                }
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
-			}
+				'accordion-up': 'accordion-up 0.2s ease-out',
+                'fade-in': 'fade-in 0.6s ease-out forwards',
+                'fade-in-right': 'fade-in-right 0.6s ease-out forwards',
+                'fade-in-left': 'fade-in-left 0.6s ease-out forwards',
+                'scale-in': 'scale-in 0.4s ease-out forwards',
+                'float': 'float 6s ease-in-out infinite',
+                'pulse-subtle': 'pulse-subtle 3s ease-in-out infinite'
+			},
+            fontFamily: {
+                'display': ['SF Pro Display', 'system-ui', 'sans-serif'],
+                'body': ['Roboto', 'system-ui', 'sans-serif']
+            },
+            backgroundImage: {
+                'hero-pattern': 'linear-gradient(to right, rgba(248, 249, 250, 0.8), rgba(248, 249, 250, 0.4)), url("/hero-bg.jpg")',
+                'card-gradient': 'linear-gradient(to bottom right, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3))',
+                'blue-gradient': 'linear-gradient(135deg, #00AFEF 0%, #0077B6 100%)'
+            },
+            backdropFilter: {
+                'blur-sm': 'blur(4px)',
+                'blur-md': 'blur(8px)',
+                'blur-lg': 'blur(16px)'
+            },
+            transitionDuration: {
+                '2000': '2000ms',
+                '3000': '3000ms'
+            }
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
