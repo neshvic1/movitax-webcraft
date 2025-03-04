@@ -1,9 +1,9 @@
-
 import { useState, useEffect, useRef, FormEvent } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Mail, MapPin, Phone } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from "@/integrations/supabase/client";
 
 const Contact = () => {
   const [name, setName] = useState('');
@@ -54,25 +54,47 @@ const Contact = () => {
     };
   }, []);
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
-      toast({
-        title: "Message Sent",
-        description: "We've received your message and will contact you soon.",
+    try {
+      const { error: dbError } = await supabase
+        .from('contact_submissions')
+        .insert([
+          { name, email, phone, service, message }
+        ]);
+      
+      if (dbError) throw new Error(dbError.message);
+      
+      const response = await supabase.functions.invoke('send-contact-email', {
+        body: { name, email, phone, service, message }
       });
       
-      // Reset form
-      setName('');
-      setEmail('');
-      setPhone('');
-      setService('');
-      setMessage('');
+      if (!response.error) {
+        toast({
+          title: "Message Sent",
+          description: "We've received your message and will contact you soon.",
+        });
+        
+        setName('');
+        setEmail('');
+        setPhone('');
+        setService('');
+        setMessage('');
+      } else {
+        throw new Error(response.error.message || "Failed to send email");
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      toast({
+        title: "Error",
+        description: "There was a problem sending your message. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1500);
+    }
   };
 
   const handleMapClick = () => {
