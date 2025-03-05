@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef, FormEvent } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -59,6 +60,7 @@ const Contact = () => {
     setIsSubmitting(true);
     
     try {
+      // Store submission in Supabase database
       const { error: dbError } = await supabase
         .from('contact_submissions')
         .insert([
@@ -67,6 +69,7 @@ const Contact = () => {
       
       if (dbError) throw new Error(dbError.message);
       
+      // Send email using Supabase Edge Function
       const response = await supabase.functions.invoke('send-contact-email', {
         body: { name, email, phone, service, message }
       });
@@ -77,6 +80,7 @@ const Contact = () => {
           description: "We've received your message and will contact you soon.",
         });
         
+        // Reset form fields
         setName('');
         setEmail('');
         setPhone('');
