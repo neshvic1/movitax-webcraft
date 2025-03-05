@@ -41,7 +41,7 @@ const Navbar = () => {
           <img 
             src="/lovable-uploads/70ee13ad-33b8-4a9d-9978-524c22f5dbee.png" 
             alt="Movitax Consultants" 
-            className="h-12 md:h-14"
+            className="h-12 md:h-14 object-contain transition-all duration-300"
           />
         </NavLink>
 
