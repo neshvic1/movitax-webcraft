@@ -39,9 +39,9 @@ const Navbar = () => {
       <div className="container mx-auto px-6 flex justify-between items-center">
         <NavLink to="/" className="flex items-center">
           <img 
-            src="/lovable-uploads/70ee13ad-33b8-4a9d-9978-524c22f5dbee.png" 
+            src="/lovable-uploads/758955b7-d279-45d6-b6e6-2b6ff8667b05.png" 
             alt="Movitax Consultants" 
-            className="h-12 md:h-14 object-contain transition-all duration-300"
+            className="h-12 md:h-16 object-contain transition-all duration-300"
           />
         </NavLink>
 
