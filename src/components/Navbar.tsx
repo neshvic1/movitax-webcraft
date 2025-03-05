@@ -21,6 +21,8 @@ const Navbar = () => {
   useEffect(() => {
     // Close mobile menu when route changes
     setIsMobileMenuOpen(false);
+    // Scroll to top when route changes
+    window.scrollTo(0, 0);
   }, [location]);
 
   const toggleMobileMenu = () => {
@@ -41,7 +43,7 @@ const Navbar = () => {
           <img 
             src="/lovable-uploads/758955b7-d279-45d6-b6e6-2b6ff8667b05.png" 
             alt="Movitax Consultants" 
-            className="h-12 md:h-16 object-contain transition-all duration-300"
+            className="h-16 md:h-20 object-contain transition-all duration-300"
           />
         </NavLink>
 
