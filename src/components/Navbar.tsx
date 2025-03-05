@@ -38,9 +38,11 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
         <NavLink to="/" className="flex items-center">
-          <span className="text-2xl font-bold text-movitax-darkGray">
-            Movi<span className="text-movitax-blue">tax</span>
-          </span>
+          <img 
+            src="/lovable-uploads/70ee13ad-33b8-4a9d-9978-524c22f5dbee.png" 
+            alt="Movitax Consultants" 
+            className="h-12 md:h-14"
+          />
         </NavLink>
 
         {/* Desktop Navigation */}
