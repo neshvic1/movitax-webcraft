@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef, FormEvent } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -13,6 +12,8 @@ const Contact = () => {
   const [service, setService] = useState('');
   const [message, setMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
   
   const { toast } = useToast();
   
@@ -55,47 +56,42 @@ const Contact = () => {
     };
   }, []);
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+    setError('');
+    setSuccess('');
+
     try {
-      // Store submission in Supabase database
-      const { error: dbError } = await supabase
-        .from('contact_submissions')
-        .insert([
-          { name, email, phone, service, message }
-        ]);
+      console.log("Submitting form data:", { name, email, message });
       
-      if (dbError) throw new Error(dbError.message);
-      
-      // Send email using Supabase Edge Function
-      const response = await supabase.functions.invoke('send-contact-email', {
-        body: { name, email, phone, service, message }
+      // Use the correct URL format for Supabase Edge Functions
+      const response = await fetch('https://erywidgxptocsficfoow.supabase.co/functions/v1/send-contact-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email, message })
       });
+
+      console.log("Response status:", response.status);
       
-      if (!response.error) {
-        toast({
-          title: "Message Sent",
-          description: "We've received your message and will contact you soon.",
-        });
-        
-        // Reset form fields
-        setName('');
-        setEmail('');
-        setPhone('');
-        setService('');
-        setMessage('');
-      } else {
-        throw new Error(response.error.message || "Failed to send email");
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("Error response:", errorText);
+        throw new Error(errorText || 'Something went wrong');
       }
+
+      const data = await response.json();
+      console.log("Success response:", data);
+      
+      setSuccess('Your message has been sent! We will get back to you soon.');
+      setName('');
+      setEmail('');
+      setMessage('');
     } catch (error) {
       console.error("Form submission error:", error);
-      toast({
-        title: "Error",
-        description: "There was a problem sending your message. Please try again.",
-        variant: "destructive",
-      });
+      setError(`Failed to send your message: ${error.message}`);
     } finally {
       setIsSubmitting(false);
     }
